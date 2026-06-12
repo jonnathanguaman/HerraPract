@@ -1,0 +1,58 @@
+services:
+  api:
+    build:
+      context: ./herramientas-node-api
+    container_name: inventory-api
+    restart: unless-stopped
+    environment:
+      PORT: 4005
+      NODE_ENV: ${NODE_ENV:-production}
+      DB_HOST: postgres
+      DB_PORT: ${DB_PORT:-5432}
+      DB_NAME: ${DB_NAME:-herramientas_app}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:?Database password is required}
+      DB_SYNC_ALTER: ${DB_SYNC_ALTER:-false}
+      JWT_SECRET: ${JWT_SECRET:?JWT secret is required}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - inventory-network
+
+  frontend:
+    build:
+      context: ./frontend-app
+    container_name: inventory-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    depends_on:
+      - api
+    networks:
+      - inventory-network
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: inventory-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-herramientas_app}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Database password is required}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-herramientas_app}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - inventory-network
+
+volumes:
+  postgres-data:
+
+networks:
+  inventory-network:
+    driver: bridge

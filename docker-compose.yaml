@@ -2,7 +2,6 @@ services:
   api:
     build:
       context: ./herramientas-node-api
-    container_name: inventory-api
     restart: unless-stopped
     environment:
       PORT: 4005
@@ -17,24 +16,18 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    networks:
-      - inventory-network
 
   frontend:
     build:
       context: ./frontend-app
-    container_name: inventory-frontend
     restart: unless-stopped
-    ports:
-      - "81:80"
+    expose:
+      - "80"
     depends_on:
       - api
-    networks:
-      - inventory-network
 
   postgres:
     image: postgres:16-alpine
-    container_name: inventory-db
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${DB_NAME:-herramientas_app}
@@ -47,12 +40,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    networks:
-      - inventory-network
 
 volumes:
   postgres-data:
-
-networks:
-  inventory-network:
-    driver: bridge

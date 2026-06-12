@@ -273,3 +273,5 @@ Crear pantalla de gestión de categorías.
 
 - Foto del token generado
 ![alt text](image-7.png)
+
+**Imagen de la app desplegada**

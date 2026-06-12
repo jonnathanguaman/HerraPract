@@ -1,4 +1,4 @@
-PROMPT 
+**PROMPT** 
 
 Diseña una interfaz web moderna, sobria y profesional para un sistema de inventario y ventas de herramientas llamado Herramientas Master.
 La aplicación debe sentirse como un sistema real de operación diaria: clara, rápida, ordenada, confiable y lista para integrarse con una API REST protegida con JWT.
@@ -7,30 +7,18 @@ La aplicación usa una API REST con autenticación JWT.
 Endpoints principales:
 
 Auth:
-
-/api/auth/register
-
-/api/auth/login
-
-/api/auth/refresh
-
-/api/auth/me
-
+- /api/auth/register
+- /api/auth/login
+- /api/auth/refresh
+- /api/auth/me
 Categorías:
-
-/api/categorias
-
+- /api/categorias
 Clientes:
-
-/api/clientes
-
+- /api/clientes
 Productos:
-
-/api/productos
-
-Ventas:
-
-/api/ventas
+- /api/productos
+- Ventas:
+- /api/ventas
 Entidades disponibles
 Usuario:
    - email
@@ -275,3 +263,10 @@ Crear pantalla de gestión de categorías.
 ![alt text](image-7.png)
 
 **Imagen de la app desplegada**
+
+La imagen muestra que se desplego y genero esta URL:
+http://l12ruxl8sga3v8mbfdkvdqzw.190.154.245.84.sslip.io|
+![alt text](image-8.png)
+
+Pero fallo al mostrar la app
+![alt text](image-9.png)

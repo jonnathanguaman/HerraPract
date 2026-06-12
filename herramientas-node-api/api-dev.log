@@ -1,0 +1,6 @@
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+Conexion a BD establecida
+Modelos sincronizados
+Servidor disponible en el puerto: 4005
+Documentacion Swagger en: http://localhost:4005/docs

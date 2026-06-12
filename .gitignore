@@ -1,0 +1,4 @@
+.env
+COOLIFY_DEPLOY.md
+DOCKER.md
+docker-compose.yml

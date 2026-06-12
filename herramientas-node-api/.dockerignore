@@ -1,0 +1,16 @@
+node_modules
+.agents
+.claude
+.cline
+.continue
+.kiro
+.git
+.gitignore
+*.md
+.env
+.env.*
+package-lock.json
+api-dev*.log
+*.log
+npm-debug.log*
+bun-error.log
